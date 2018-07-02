@@ -110,9 +110,10 @@ client.on("message", async message => {
 					var videos = await youtube.searchVideos(searchString, 10);
 					let index = 0;
 					message.channel.send(`
-__**Song selection:**__
-${videos.map(video2 => `**${++index} -** ${video2.title}`).join('\n')}
-From 1 out of 10! Which would you like?! 
+                    __**Song selection:**__
+                    ${videos.map(video2 => `**${++index} -** ${video2.title}`).join('\n')}
+                    \n
+                    From 1 out of 10! Which would you like?! 
 					`);
 					// eslint-disable-next-line max-depth
 					try {
@@ -137,8 +138,50 @@ From 1 out of 10! Which would you like?!
             break;
         //MUSIC STOP
         case "stop":
-            if (!message.member.voiceChannel) return message.channel.send('There is no one here with me, so I left.');
-            message.member.voiceChannel.leave();
+            if (!message.member.voiceChannel) return message.channel.send("Hey! You're not in a voice channel! >.<");
+		    if (!serverQueue) return message.channel.send("Huh? Stop what?");
+		    serverQueue.songs = [];
+		    serverQueue.connection.dispatcher.end('You shall stop! (ㆁᴗㆁ✿)');
+            return undefined;
+            break;
+        //MUSIC SKIP
+        case "skip":
+            if (!message.member.voiceChannel) return message.channel.send("Hey! You're not in a voice channel! >.<");
+		    if (!serverQueue) return msg.channel.send("Huh? Stop what?");
+		    serverQueue.connection.dispatcher.end("SKIP!");
+            return undefined;
+            break;
+        //MUSIC NOW PLAYING
+        case "np":
+            if (!serverQueue) return msg.channel.send('There is nothing playing.');
+            return msg.channel.send(`🎶 I am now singing: **${serverQueue.songs[0].title}**`);
+            break;
+        //MUSIC QUEUE
+        case "queue":
+            if (!serverQueue) return msg.channel.send('There is nothing playing.');
+            return msg.channel.send(`
+                __**Song queue:**__
+${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
+            **Now playing:** ${serverQueue.songs[0].title}
+            `);
+            break;
+        //MUSIC PAUSE
+        case "pause":
+            if (serverQueue && serverQueue.playing) {
+			serverQueue.playing = false;
+			serverQueue.connection.dispatcher.pause();
+			return msg.channel.send('There you go! Paused! ⏸');       
+            break;
+            }
+        //MUSIC RESUME
+        case "resume":
+            if (serverQueue && !serverQueue.playing) {
+			    serverQueue.playing = true;
+			    serverQueue.connection.dispatcher.resume();
+			    return msg.channel.send("aaaaaaand resumed! ▶");
+		    }
+		    return msg.channel.send("There's nothing playing >.<");
+        
             return undefined;
             break;
         //MULTI COMM TEST
@@ -165,8 +208,8 @@ From 1 out of 10! Which would you like?!
 
     //MUSIC FUNCTIONS
 
-    async function handleVideo(video, msg, voiceChannel, playlist = false) {
-        const serverQueue = queue.get(msg.guild.id);
+    async function handleVideo(video, message, voiceChannel, playlist = false) {
+        const serverQueue = queue.get(message.guild.id);
         console.log(video);
         const song = {
             id: video.id,
@@ -175,31 +218,31 @@ From 1 out of 10! Which would you like?!
         };
         if (!serverQueue) {
             const queueConstruct = {
-                textChannel: msg.channel,
+                textChannel: message.channel,
                 voiceChannel: voiceChannel,
                 connection: null,
                 songs: [],
                 volume: 5,
                 playing: true
             };
-            queue.set(msg.guild.id, queueConstruct);
+            queue.set(message.guild.id, queueConstruct);
     
             queueConstruct.songs.push(song);
     
             try {
                 var connection = await voiceChannel.join();
                 queueConstruct.connection = connection;
-                play(msg.guild, queueConstruct.songs[0]);
+                play(message.guild, queueConstruct.songs[0]);
             } catch (error) {
                 console.error(`I could not join the voice channel: ${error}`);
-                queue.delete(msg.guild.id);
-                return msg.channel.send(`I could not join the voice channel: ${error}`);
+                queue.delete(message.guild.id);
+                return message.channel.send(`I could not join the voice channel: ${error}`);
             }
         } else {
             serverQueue.songs.push(song);
             console.log(serverQueue.songs);
             if (playlist) return undefined;
-            else return msg.channel.send(`I have added the song **${song.title}** to the queue!`);
+            else return message.channel.send(`I have added the song **${song.title}** to the queue!`);
         }
         return undefined;
     }
@@ -209,6 +252,7 @@ From 1 out of 10! Which would you like?!
     
         if (!song) {
             serverQueue.voiceChannel.leave();
+            serverQueue.textChannel.send("Well, that was fun! See you next time! 🐱")
             queue.delete(guild.id);
             return;
         }

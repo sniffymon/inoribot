@@ -69,29 +69,57 @@ client.on("message", message => {
             break;
         //MUSIC PLAY
         case "play":
-            const voiceChannel = message.member.voiceChannel;
-            if (!voiceChannel) return message.channel.send("Hey! You're not in a voice channel! >.<");
-            const permissions = voiceChannel.permissionsFor(message.client.user);
-            if (!permissions.has('CONNECT')) {
-                return message.channel.send("I can't seem to connect! Do I have the permissions? :(");
-            }
 
-            if (!permissions.has('SPEAK')) {
-                return message.channel.send("Help! I can't speak! It seems I do not have the permission to do so! :'(");
-            }
+        const voiceChannel = msg.member.voiceChannel;
+		if (!voiceChannel) return msg.channel.send("Hey! You're not in a voice channel! >.<");
+		const permissions = voiceChannel.permissionsFor(msg.client.user);
+		if (!permissions.has('CONNECT')) {
+			return msg.channel.send("I can't seem to connect! Do I have the permissions? :(");
+		}
+		if (!permissions.has('SPEAK')) {
+			return msg.channel.send("Help! I can't sing! It seems I do not have the permission to do so! :'(");
+		}
 
-            
-             var connection = voiceChannel.join();
-            
-            const dispatcher = connection.play(ytdl(args[1]))   //(ytdl(args[1], {filter: "audioonly"}))
-                .on("end", () => {
-                    console.log('the song ended!');
-                    voiceChannel.leave();
-            })
-                .on("error", error => {
-                    console.error(error);
-            })
-            dispatcher.setVolume(1);
+		if (url.match(/^https?:\/\/(www.youtube.com|youtube.com)\/playlist(.*)$/)) {
+			const playlist = await youtube.getPlaylist(url);
+			const videos = await playlist.getVideos();
+			for (const video of Object.values(videos)) {
+				const video2 = await youtube.getVideoByID(video.id); // eslint-disable-line no-await-in-loop
+				await handleVideo(video2, msg, voiceChannel, true); // eslint-disable-line no-await-in-loop
+			}
+			return msg.channel.send(`✅ Playlist: **${playlist.title}** has been added to the queue!`);
+		} else {
+			try {
+				var video = await youtube.getVideo(url);
+			} catch (error) {
+				try {
+					var videos = await youtube.searchVideos(searchString, 10);
+					let index = 0;
+					msg.channel.send(`
+__**Song selection:**__
+${videos.map(video2 => `**${++index} -** ${video2.title}`).join('\n')}
+From 1 to 10! Which would you like?! 
+					`);
+					// eslint-disable-next-line max-depth
+					try {
+						var response = await msg.channel.awaitMessages(msg2 => msg2.content > 0 && msg2.content < 11, {
+							maxMatches: 1,
+							time: 10000,
+							errors: ['time']
+						});
+					} catch (err) {
+						console.error(err);
+						return msg.channel.send('No or invalid value entered, cancelling video selection.');
+					}
+					const videoIndex = parseInt(response.first().content);
+					var video = await youtube.getVideoByID(videos[videoIndex - 1].id);
+				} catch (err) {
+					console.error(err);
+					return msg.channel.send('🆘 I could not obtain any search results.');
+				}
+			}
+			return handleVideo(video, msg, voiceChannel);
+}
             break;
         //MUSIC STOP
         case "stop":

@@ -49,7 +49,7 @@ client.on("message", async message => {
     //Music Search Engine
     const searchString = args.slice(1).join(' ');
     const url = args[1] ? args[1].replace(/<(.+)>/g, '$1') : '';
-    const serverQueue = queue.get(message.guild.id);
+    //const serverQueue = queue.get(message.guild.id);
 
     switch (args[0]) {
         //PING TEST
@@ -96,8 +96,8 @@ client.on("message", async message => {
 			const playlist = await youtube.getPlaylist(url);
 			const videos = await playlist.getVideos();
 			for (const video of Object.values(videos)) {
-				const video2 = await youtube.getVideoByID(video.id); // eslint-disable-line no-await-in-loop
-				await handleVideo(video2, message, voiceChannel, true); // eslint-disable-line no-await-in-loop
+				const video2 = await youtube.getVideoByID(video.id); 
+				await handleVideo(video2, message, voiceChannel, true); 
 			}
 			return message.channel.send(`🎵 Playlist: **${playlist.title}** has been added to the current queue!`);
 		} else {

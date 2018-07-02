@@ -81,7 +81,7 @@ client.on("message", message => {
             }
 
             
-             var connection = await voiceChannel.join();
+             var connection = voiceChannel.join();
             
 
             const dispatcher = connection.playStream(ytdl(args[1]));

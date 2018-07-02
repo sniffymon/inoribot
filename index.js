@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const { Discord, Util } = require("discord.js");
 const TOKEN = "NDYyODk2Mjk3MDc1Mjc3ODI0.Dhpxwg.zxx6-eACsKeTnLZzeRhG0lCm3Gk"
 const PREFIX = "i!"
 const ytdl = require("ytdl-core")

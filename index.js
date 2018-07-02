@@ -30,7 +30,7 @@ client.on("guildMemberAdd", (member) => {
 //MUSIC FUNCTION
 
 //COMMANDS
-client.on("message", message => {
+client.on("message", async message => {
     //Input Validation
     if (message.author.bot) return;
     if (!message.content.startsWith(PREFIX)) return;
@@ -87,7 +87,7 @@ client.on("message", message => {
 				const video2 = await youtube.getVideoByID(video.id); // eslint-disable-line no-await-in-loop
 				await handleVideo(video2, msg, voiceChannel, true); // eslint-disable-line no-await-in-loop
 			}
-			return msg.channel.send(`✅ Playlist: **${playlist.title}** has been added to the queue!`);
+			return msg.channel.send(`🎵 Playlist: **${playlist.title}** has been added to the current queue!`);
 		} else {
 			try {
 				var video = await youtube.getVideo(url);
@@ -98,7 +98,7 @@ client.on("message", message => {
 					msg.channel.send(`
 __**Song selection:**__
 ${videos.map(video2 => `**${++index} -** ${video2.title}`).join('\n')}
-From 1 to 10! Which would you like?! 
+From 1 out of 10! Which would you like?! 
 					`);
 					// eslint-disable-next-line max-depth
 					try {
@@ -115,7 +115,7 @@ From 1 to 10! Which would you like?!
 					var video = await youtube.getVideoByID(videos[videoIndex - 1].id);
 				} catch (err) {
 					console.error(err);
-					return msg.channel.send('🆘 I could not obtain any search results.');
+					return msg.channel.send("😭 I couldn't find anything..");
 				}
 			}
 			return handleVideo(video, msg, voiceChannel);

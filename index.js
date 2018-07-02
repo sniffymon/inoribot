@@ -251,7 +251,7 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
         const serverQueue = queue.get(guild.id);
     
         if (!song) {
-            serverQueue.voiceChannel.leave();
+            setTimeout(serverQueue.voiceChannel.leave(), 60000)
             serverQueue.textChannel.send("Well, that was fun! See you next time! 🐱")
             queue.delete(guild.id);
             return;

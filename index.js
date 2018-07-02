@@ -258,7 +258,7 @@ return message.channel.send(`I set the volume to: **${args[1]}**`);
         const serverQueue = queue.get(guild.id);
     
         if (!song) {
-            setTimeout(serverQueue.voiceChannel.leave(), 60000)
+            setTimeout(botleave, 60000, serverQueue.voiceChannel.leave())
             serverQueue.textChannel.send("Well, that was fun! See you next time! 🐱")
             queue.delete(guild.id);
             return;

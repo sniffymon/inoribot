@@ -1,10 +1,9 @@
 const Discord = require("discord.js");
 const TOKEN = "NDYyODk2Mjk3MDc1Mjc3ODI0.Dhpxwg.zxx6-eACsKeTnLZzeRhG0lCm3Gk"
 const PREFIX = "i!"
+const ytdl = require("ytdl-core")
 
-var client = new Discord.Client();
-
-var servers = {};
+var client = new Discord.Client({disableEveryone: true});
 
 client.on("ready", function(){
     client.user.setActivity({game: {name: "with candy!", type: 0}});
@@ -29,26 +28,14 @@ client.on("guildMemberAdd", (member) => {
     });
     
 //MUSIC FUNCTION
-function play(connection, message) {
-    var server = servers[message.guild.id];
-
-    server.dispatcher = connection.playStream(YTDL(server.queue[0], {filter:"audioonly"}));
-
-    server.queue.shift();
-
-    server.dispatcher.on("end", function() {
-        if (server.queue[0]) play(connection, message);
-        else connection.disconnect();
-    })
-}
 
 //COMMANDS
-client.on("message", function(message) {
-    if (message.author.equals(client.user)) return;
-
+client.on("message", async message => {
+    //Input Validation
+    if (message.author.bot) return;
     if (!message.content.startsWith(PREFIX)) return;
 
-
+    //Prefix Translation Engine
     var args = message.content.substring(PREFIX.length).split(" ");
     var author_tag = message.author.username
 
@@ -82,26 +69,35 @@ client.on("message", function(message) {
             break;
         //MUSIC PLAY
         case "play":
-            if (!args[1]) {
-                message.channel.send("But there was no link!")
-                return;
+            const voiceChannel = message.member.voiceChannel;
+            if (!voiceChannel) return message.channel.send("Hey! You're not in a voice channel! >.<");
+            const permissions = voiceChannel.permissionsFor(message.client.user);
+            if (!permissions.has('CONNECT')) {
+                return message.channel.send("I can't seem to connect! Do I have the permissions? :(");
             }
 
-            if (!message.member.voiceChannel) {
-                message.channel.send("You must be in a voice channel to call me there!")
+            if (!permissions.has('SPEAK')) {
+                return message.channel.send("Help! I can't speak! It seems I do not have the permission to do so! :'(");
             }
 
-            if(!servers[message.guild.id]) servers[message.guild.id] = {
-                queue: []
+            try {
+                var connection = await voiceChannel.join();
+            } catch (error) {
+                console.error('I could not join the voice channel: ${error}');
+                return message.channel.send('I could not join the voice channel: ${error}');
             }
 
-            var server = servers[message.guild.id]
+            const dispatcher = connection.playStream(ytdl(args[1]));
+            dispatcher.on("end", () => {
+                console.log('the song ended!');
+                voiceChannel.leave();
+            })
+            dispatcher.on("error", error => {
+                console.error(error);
+            })
+            dispatcher.setVolume(1);
 
-            server.queue.push(args[1]);
-            
-            if (!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection) {
-                play(connection, message);
-            });
+
             break;
         //MUSIC STOP
         case "stop":
@@ -132,4 +128,4 @@ client.on("message", function(message) {
     }
 });
 
-client.login(TOKEN);
+client.login(process.env.TOKEN);

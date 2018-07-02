@@ -84,12 +84,12 @@ client.on("message", message => {
              var connection = voiceChannel.join();
             
 
-            const dispatcher = connection.playStream(ytdl(args[1]));
-            dispatcher.on("end", () => {
+            const dispatcher = connection.playStream(ytdl(args[1]))
+                .on("end", () => {
                 console.log('the song ended!');
                 voiceChannel.leave();
             })
-            dispatcher.on("error", error => {
+                .on("error", error => {
                 console.error(error);
             })
             dispatcher.setVolume(1);

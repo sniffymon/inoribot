@@ -80,12 +80,9 @@ client.on("message", async message => {
                 return message.channel.send("Help! I can't speak! It seems I do not have the permission to do so! :'(");
             }
 
-            try {
-                var connection = await voiceChannel.join();
-            } catch (error) {
-                console.error('I could not join the voice channel: ${error}');
-                return message.channel.send('I could not join the voice channel: ${error}');
-            }
+            
+             var connection = await voiceChannel.join();
+            
 
             const dispatcher = connection.playStream(ytdl(args[1]));
             dispatcher.on("end", () => {

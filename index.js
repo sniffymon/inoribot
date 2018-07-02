@@ -3,6 +3,7 @@ const TOKEN = "NDYyODk2Mjk3MDc1Mjc3ODI0.Dhpxwg.zxx6-eACsKeTnLZzeRhG0lCm3Gk"
 const PREFIX = "i!"
 const ytdl = require("ytdl-core")
 const youtube = require("simple-youtube-api")
+const GOOGLE_API_KEY = "AIzaSyByFo4M5ANPPqjjjXjlZVPdcqyrOvDM_9M"
 
 var client = new Discord.Client({disableEveryone: true});
 

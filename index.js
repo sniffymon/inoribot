@@ -70,14 +70,14 @@ client.on("message", async message => {
         //MUSIC PLAY
         case "play":
 
-        const voiceChannel = msg.member.voiceChannel;
-		if (!voiceChannel) return msg.channel.send("Hey! You're not in a voice channel! >.<");
-		const permissions = voiceChannel.permissionsFor(msg.client.user);
+        const voiceChannel = message.member.voiceChannel;
+		if (!voiceChannel) return message.channel.send("Hey! You're not in a voice channel! >.<");
+		const permissions = voiceChannel.permissionsFor(message.client.user);
 		if (!permissions.has('CONNECT')) {
-			return msg.channel.send("I can't seem to connect! Do I have the permissions? :(");
+			return message.channel.send("I can't seem to connect! Do I have the permissions? :(");
 		}
 		if (!permissions.has('SPEAK')) {
-			return msg.channel.send("Help! I can't sing! It seems I do not have the permission to do so! :'(");
+			return message.channel.send("Help! I can't sing! It seems I do not have the permission to do so! :'(");
 		}
 
 		if (url.match(/^https?:\/\/(www.youtube.com|youtube.com)\/playlist(.*)$/)) {
@@ -85,9 +85,9 @@ client.on("message", async message => {
 			const videos = await playlist.getVideos();
 			for (const video of Object.values(videos)) {
 				const video2 = await youtube.getVideoByID(video.id); // eslint-disable-line no-await-in-loop
-				await handleVideo(video2, msg, voiceChannel, true); // eslint-disable-line no-await-in-loop
+				await handleVideo(video2, message, voiceChannel, true); // eslint-disable-line no-await-in-loop
 			}
-			return msg.channel.send(`🎵 Playlist: **${playlist.title}** has been added to the current queue!`);
+			return message.channel.send(`🎵 Playlist: **${playlist.title}** has been added to the current queue!`);
 		} else {
 			try {
 				var video = await youtube.getVideo(url);
@@ -95,35 +95,35 @@ client.on("message", async message => {
 				try {
 					var videos = await youtube.searchVideos(searchString, 10);
 					let index = 0;
-					msg.channel.send(`
+					message.channel.send(`
 __**Song selection:**__
 ${videos.map(video2 => `**${++index} -** ${video2.title}`).join('\n')}
 From 1 out of 10! Which would you like?! 
 					`);
 					// eslint-disable-next-line max-depth
 					try {
-						var response = await msg.channel.awaitMessages(msg2 => msg2.content > 0 && msg2.content < 11, {
+						var response = await message.channel.awaitMessages(msg2 => msg2.content > 0 && msg2.content < 11, {
 							maxMatches: 1,
 							time: 10000,
 							errors: ['time']
 						});
 					} catch (err) {
 						console.error(err);
-						return msg.channel.send('No or invalid value entered, cancelling video selection.');
+						return message.channel.send('No or invalid value entered, cancelling video selection.');
 					}
 					const videoIndex = parseInt(response.first().content);
 					var video = await youtube.getVideoByID(videos[videoIndex - 1].id);
 				} catch (err) {
 					console.error(err);
-					return msg.channel.send("😭 I couldn't find anything..");
+					return message.channel.send("😭 I couldn't find anything..");
 				}
 			}
-			return handleVideo(video, msg, voiceChannel);
+			return handleVideo(video, message, voiceChannel);
 }
             break;
         //MUSIC STOP
         case "stop":
-            if (!msg.member.voiceChannel) return message.channel.send('There is no one here with me, so I left.');
+            if (!message.member.voiceChannel) return message.channel.send('There is no one here with me, so I left.');
             message.member.voiceChannel.leave();
             return undefined;
             break;

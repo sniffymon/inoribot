@@ -2,8 +2,11 @@ const Discord = require("discord.js");
 const TOKEN = "NDYyODk2Mjk3MDc1Mjc3ODI0.Dhpxwg.zxx6-eACsKeTnLZzeRhG0lCm3Gk"
 const PREFIX = "i!"
 const ytdl = require("ytdl-core")
+const youtube = require("simple-youtube-api")
 
 var client = new Discord.Client({disableEveryone: true});
+
+const youtube = new YouTube(GOOGLE_API_KEY);
 
 client.on("ready", function(){
     client.user.setActivity({game: {name: "with candy!", type: 0}});
@@ -28,6 +31,10 @@ client.on("guildMemberAdd", (member) => {
     });
     
 //MUSIC FUNCTION
+const args = message.content.split(' ');
+const searchString = args.slice(1).join(' ');
+const url = args[1] ? args[1].replace(/<(.+)>/g, '$1') : '';
+const serverQueue = queue.get(message.guild.id);
 
 //COMMANDS
 client.on("message", async message => {

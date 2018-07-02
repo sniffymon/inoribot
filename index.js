@@ -96,14 +96,12 @@ client.on("message", async message => {
                 console.error(error);
             })
             dispatcher.setVolume(1);
-
-
             break;
         //MUSIC STOP
         case "stop":
-            var server = servers[message.guild.id]
-
-            if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
+            if (!msg.member.voiceChannel) return message.channel.send('There is no one here with me, so I left.');
+            message.member.voiceChannel.leave();
+            return undefined;
             break;
         //MULTI COMM TEST
         case "mult":

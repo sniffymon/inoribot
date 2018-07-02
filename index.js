@@ -12,7 +12,9 @@ var client = new Discord.Client({disableEveryone: true});
 const youtube = new YouTube(GOOGLE_API_KEY);
 
 client.on("ready", function(){
-    client.user.setActivity({game: {name: "with candy!", type: 0}});
+    client.user.setActivity("with candy!", {
+        type: "PLAYING"
+      });
     console.log("Inori is now Ready!");
 })
 
@@ -40,10 +42,7 @@ client.on("guildMemberAdd", (member) => {
 client.on("message", async message => {
     //Input Validation
     if (message.author.bot) return;
-    if (!message.content.startsWith(PREFIX)) return;
-
-
-  
+    if (!message.content.startsWith(PREFIX)) return;  
 
     //Prefix Translation Engine
     var args = message.content.substring(PREFIX.length).split(" ");

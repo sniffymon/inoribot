@@ -269,7 +269,7 @@ return message.channel.send(`I set the volume to: **${args[1]}**`);
                 if (reason === 'Stream is not generating quickly enough.') console.log('Song ended. Bot disconnecting in 1 min');
                 else console.log(reason);
                 serverQueue.songs.shift();
-                setTimeout(play(guild, serverQueue.songs[0]), 60000);
+                setTimeout(play, 60000, guild, serverQueue.songs[0]);
             })
             .on('error', error => console.error(error));
         dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);

@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const TOKEN = "NDYyODk2Mjk3MDc1Mjc3ODI0.Dhpxwg.zxx6-eACsKeTnLZzeRhG0lCm3Gk"
 const PREFIX = "i!"
 const ytdl = require("ytdl-core")
+const ffmpeg = require('ffmpeg');
 
 var client = new Discord.Client({disableEveryone: true});
 
@@ -83,8 +84,7 @@ client.on("message", message => {
             
              var connection = voiceChannel.join();
             
-
-            const dispatcher = connection.playStream(ytdl(args[1], {filter: "audioonly"}))
+            const dispatcher = connection.playStream(ytdl(args[1]))   //(ytdl(args[1], {filter: "audioonly"}))
                 .on("end", () => {
                     console.log('the song ended!');
                     voiceChannel.leave();

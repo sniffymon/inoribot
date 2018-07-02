@@ -42,7 +42,7 @@ client.on("message", message => {
     switch (args[0]) {
         //PING TEST
         case "ping":
-            message.channel.send("PONG!");
+            message.channel.send("PONG!" + new Date().getTime() - message.createdTimestamp + " ms");
             break;
         //INFO
         case "info":

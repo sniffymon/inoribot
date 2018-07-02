@@ -96,6 +96,7 @@ client.on("message", async message => {
 		if (url.match(/^https?:\/\/(www.youtube.com|youtube.com)\/playlist(.*)$/)) {
 			const playlist = await youtube.getPlaylist(url);
 			const videos = await playlist.getVideos();
+
 			for (const video of Object.values(videos)) {
 				const video2 = await youtube.getVideoByID(video.id); 
 				await handleVideo(video2, message, voiceChannel, true); 
@@ -214,6 +215,8 @@ return message.channel.send(`I set the volume to: **${args[1]}**`);
     }
 
     //MUSIC FUNCTIONS
+    var inactivetimer
+
 
     async function handleVideo(video, message, voiceChannel, playlist = false) {
         const serverQueue = queue.get(message.guild.id);
@@ -269,11 +272,11 @@ return message.channel.send(`I set the volume to: **${args[1]}**`);
                 if (reason === 'Stream is not generating quickly enough.') console.log('Song ended. Bot disconnecting in 1 min');
                 else console.log(reason);
                 serverQueue.songs.shift();
-                setTimeout(play, 60000, guild, serverQueue.songs[0]);
+                inactivetimer = setTimeout(play, 60000, guild, serverQueue.songs[0]);
             })
             .on('error', error => console.error(error));
         dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
-    
+    		clearTimeout(inactivetimer)
         serverQueue.textChannel.send(`🎶 I'll start singing: **${song.title}**`);
     }
 });

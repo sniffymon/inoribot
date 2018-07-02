@@ -83,7 +83,7 @@ client.on("message", message => {
             
              var connection = voiceChannel.join();
             
-            const dispatcher = connection.playStream(ytdl(args[1]))   //(ytdl(args[1], {filter: "audioonly"}))
+            const dispatcher = connection.play(ytdl(args[1]))   //(ytdl(args[1], {filter: "audioonly"}))
                 .on("end", () => {
                     console.log('the song ended!');
                     voiceChannel.leave();

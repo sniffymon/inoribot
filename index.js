@@ -32,16 +32,18 @@ client.on("guildMemberAdd", (member) => {
     });
     
 //MUSIC FUNCTION
-const args = message.content.split(' ');
-const searchString = args.slice(1).join(' ');
-const url = args[1] ? args[1].replace(/<(.+)>/g, '$1') : '';
-const serverQueue = queue.get(message.guild.id);
+
 
 //COMMANDS
 client.on("message", async message => {
     //Input Validation
     if (message.author.bot) return;
     if (!message.content.startsWith(PREFIX)) return;
+
+    const args = message.content.split(' ');
+    const searchString = args.slice(1).join(' ');
+    const url = args[1] ? args[1].replace(/<(.+)>/g, '$1') : '';
+    const serverQueue = queue.get(message.guild.id);
 
     //Prefix Translation Engine
     var args = message.content.substring(PREFIX.length).split(" ");

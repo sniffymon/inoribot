@@ -2,12 +2,12 @@ const Discord = require("discord.js");
 const TOKEN = "NDYyODk2Mjk3MDc1Mjc3ODI0.Dhpxwg.zxx6-eACsKeTnLZzeRhG0lCm3Gk"
 const PREFIX = "i!"
 const ytdl = require("ytdl-core")
-const youtube = require("simple-youtube-api")
+const youtubeapi = require("simple-youtube-api")
 const GOOGLE_API_KEY = "AIzaSyByFo4M5ANPPqjjjXjlZVPdcqyrOvDM_9M"
 
 var client = new Discord.Client({disableEveryone: true});
 
-const youtube = new YouTube(GOOGLE_API_KEY);
+const youtubeapi = new YouTube(GOOGLE_API_KEY);
 
 client.on("ready", function(){
     client.user.setActivity({game: {name: "with candy!", type: 0}});

@@ -40,14 +40,16 @@ client.on("message", async message => {
     if (message.author.bot) return;
     if (!message.content.startsWith(PREFIX)) return;
 
-    const args = message.content.split(' ');
-    const searchString = args.slice(1).join(' ');
-    const url = args[1] ? args[1].replace(/<(.+)>/g, '$1') : '';
-    const serverQueue = queue.get(message.guild.id);
+
+  
 
     //Prefix Translation Engine
     var args = message.content.substring(PREFIX.length).split(" ");
     var author_tag = message.author.username
+    //Music Search Engine
+    const searchString = args.slice(1).join(' ');
+    const url = args[1] ? args[1].replace(/<(.+)>/g, '$1') : '';
+    const serverQueue = queue.get(message.guild.id);
 
     switch (args[0]) {
         //PING TEST

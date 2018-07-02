@@ -84,13 +84,13 @@ client.on("message", message => {
              var connection = voiceChannel.join();
             
 
-            const dispatcher = connection.playStream(ytdl(args[1]))
+            const dispatcher = connection.playStream(ytdl(args[1], {filter: "audioonly"}))
                 .on("end", () => {
-                console.log('the song ended!');
-                voiceChannel.leave();
+                    console.log('the song ended!');
+                    voiceChannel.leave();
             })
                 .on("error", error => {
-                console.error(error);
+                    console.error(error);
             })
             dispatcher.setVolume(1);
             break;

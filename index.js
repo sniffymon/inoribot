@@ -30,7 +30,7 @@ client.on("guildMemberAdd", (member) => {
 //MUSIC FUNCTION
 
 //COMMANDS
-client.on("message", async message => {
+client.on("message", message => {
     //Input Validation
     if (message.author.bot) return;
     if (!message.content.startsWith(PREFIX)) return;

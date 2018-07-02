@@ -118,12 +118,12 @@ client.on("message", async message => {
 					try {
 						var response = await message.channel.awaitMessages(msg2 => msg2.content > 0 && msg2.content < 11, {
 							maxMatches: 1,
-							time: 10000,
+							time: 20000,
 							errors: ['time']
 						});
 					} catch (err) {
 						console.error(err);
-						return message.channel.send('No or invalid value entered, cancelling video selection.');
+						return message.channel.send("You didn't answer me, cancelling video selection for now.");
 					}
 					const videoIndex = parseInt(response.first().content);
 					var video = await youtube.getVideoByID(videos[videoIndex - 1].id);
@@ -146,7 +146,7 @@ client.on("message", async message => {
         //MUSIC SKIP
         case "skip":
             if (!message.member.voiceChannel) return message.channel.send("Hey! You're not in a voice channel! >.<");
-		    if (!serverQueue) return message.channel.send("Huh? Stop what?");
+		    if (!serverQueue) return message.channel.send("Huh? Skip what?");
 		    serverQueue.connection.dispatcher.end("SKIP!");
             return undefined;
             break;
@@ -258,8 +258,7 @@ return message.channel.send(`I set the volume to: **${args[1]}**`);
         const serverQueue = queue.get(guild.id);
     
         if (!song) {
-            setTimeout(botleave, 60000, serverQueue.voiceChannel.leave())
-            serverQueue.textChannel.send("Well, that was fun! See you next time! 🐱")
+            serverQueue.voiceChannel.leave();
             queue.delete(guild.id);
             return;
         }
@@ -267,10 +266,10 @@ return message.channel.send(`I set the volume to: **${args[1]}**`);
     
         const dispatcher = serverQueue.connection.playStream(ytdl(song.url))
             .on('end', reason => {
-                if (reason === 'Stream is not generating quickly enough.') console.log('Song ended.');
+                if (reason === 'Stream is not generating quickly enough.') console.log('Song ended. Bot disconnecting in 1 min');
                 else console.log(reason);
                 serverQueue.songs.shift();
-                play(guild, serverQueue.songs[0]);
+                setTimeout(play(guild, serverQueue.songs[0]), 60000);
             })
             .on('error', error => console.error(error));
         dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);

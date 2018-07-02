@@ -147,19 +147,19 @@ client.on("message", async message => {
         //MUSIC SKIP
         case "skip":
             if (!message.member.voiceChannel) return message.channel.send("Hey! You're not in a voice channel! >.<");
-		    if (!serverQueue) return msg.channel.send("Huh? Stop what?");
+		    if (!serverQueue) return message.channel.send("Huh? Stop what?");
 		    serverQueue.connection.dispatcher.end("SKIP!");
             return undefined;
             break;
         //MUSIC NOW PLAYING
         case "np":
-            if (!serverQueue) return msg.channel.send('There is nothing playing.');
-            return msg.channel.send(`🎶 I am now singing: **${serverQueue.songs[0].title}**`);
+            if (!serverQueue) return message.channel.send('There is nothing playing.');
+            return message.channel.send(`🎶 I am now singing: **${serverQueue.songs[0].title}**`);
             break;
         //MUSIC QUEUE
         case "queue":
-            if (!serverQueue) return msg.channel.send('There is nothing playing.');
-            return msg.channel.send(`
+            if (!serverQueue) return message.channel.send('There is nothing playing.');
+            return message.channel.send(`
                 __**Song queue:**__
 ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
             **Now playing:** ${serverQueue.songs[0].title}
@@ -170,7 +170,7 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
             if (serverQueue && serverQueue.playing) {
 			serverQueue.playing = false;
 			serverQueue.connection.dispatcher.pause();
-			return msg.channel.send('There you go! Paused! ⏸');       
+			return message.channel.send('There you go! Paused! ⏸');       
             break;
             }
         //MUSIC RESUME
@@ -178,12 +178,20 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
             if (serverQueue && !serverQueue.playing) {
 			    serverQueue.playing = true;
 			    serverQueue.connection.dispatcher.resume();
-			    return msg.channel.send("aaaaaaand resumed! ▶");
+			    return message.channel.send("aaaaaaand resumed! ▶");
 		    }
-		    return msg.channel.send("There's nothing playing >.<");
+		    return message.channel.send("There's nothing playing >.<");
         
             return undefined;
             break;
+        //MUSIC VOLUME
+        case "volume":
+        if (!message.member.voiceChannel) return message.channel.send('You are not in a voice channel!');
+		if (!serverQueue) return message.channel.send('There is nothing playing.');
+		if (!args[1]) return message.channel.send(`The current volume is: **${serverQueue.volume}**`);
+		serverQueue.volume = args[1];
+		serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 5);
+return message.channel.send(`I set the volume to: **${args[1]}**`);
         //MULTI COMM TEST
         case "mult":
             switch (args[1]) {

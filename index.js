@@ -4,6 +4,7 @@ const PREFIX = "i!"
 const ytdl = require("ytdl-core")
 const YouTube = require("simple-youtube-api")
 const GOOGLE_API_KEY = "AIzaSyByFo4M5ANPPqjjjXjlZVPdcqyrOvDM_9M"
+const queue = new Map();
 
 var client = new Discord.Client({disableEveryone: true});
 
@@ -49,7 +50,7 @@ client.on("message", async message => {
     //Music Search Engine
     const searchString = args.slice(1).join(' ');
     const url = args[1] ? args[1].replace(/<(.+)>/g, '$1') : '';
-    //const serverQueue = queue.get(message.guild.id);
+    const serverQueue = queue.get(message.guild.id);
 
     switch (args[0]) {
         //PING TEST

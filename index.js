@@ -8,13 +8,15 @@ const GOOGLE_API_KEY = "AIzaSyByFo4M5ANPPqjjjXjlZVPdcqyrOvDM_9M"
 const queue = new Map();
 
 var client = new Discord.Client({disableEveryone: true});
+var activitymsg = ["with candy!", "the piano!", "the guitar!", "with Shiro!", "the drums!", "with all cute things!"];
+var randomizeam = activitymsg[Math.floor(Math.round() * activitymsg.length)]
 
 const youtube = new YouTube(GOOGLE_API_KEY);
 
 client.on("ready", function(){
-    client.user.setActivity("with candy!", {
+    setInterval(client.user.setActivity(randomizeam, {
         type: "PLAYING"
-      });
+      }), 60000);
     console.log("Inori is now Ready!");
 })
 

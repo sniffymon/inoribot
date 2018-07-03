@@ -149,11 +149,11 @@ client.on("message", async message => {
             }).then((messages) => {
             if (user) {
             const filterBy = user ? user.id : Client.user.id;
-            messages = messages.filter(m => m.author.id === filterBy).array().slice(0, parseInt(args[1]) + 2);
+            messages = messages.filter(m => m.author.id === filterBy).array().slice(0, parseInt(args[1]) + 3);
             }
         
         message.channel.bulkDelete(messages).catch(error => console.log(error.stack));
-        message.reply(", I removed " + args[1] + " messages!").then(d_msg => {d_msg.delete(5000); });
+        message.reply(" I removed " + args[1] + " messages!").then(d_msg => {d_msg.delete(5000); });
         });
 
         break;

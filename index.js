@@ -136,8 +136,12 @@ client.on("message", async message => {
         break;
         //PURGE
         case "purge":
+<<<<<<< HEAD
           /*  var user = message.mentions.users.first();
             const amount = !!parseInt(message.content.split(' ')[1]) ? parseInt(message.content.split(' ')[1]) : parseInt(message.content.split(' ')[2])
+=======
+            var user = message.mentions.users.first();
+>>>>>>> parent of 35ec860... Update Math
             if (!message.member.roles.find("name", adminrolename)) {
                 message.channel.send('You do not have the permissions for that command!');
                 return;
@@ -150,6 +154,7 @@ client.on("message", async message => {
             }).then((messages) => {
             if (user) {
             const filterBy = user ? user.id : Client.user.id;
+<<<<<<< HEAD
             messages = messages.filter(m => m.author.id === filterBy).array().slice(0, parseInt(amount));
             }
         
@@ -170,6 +175,14 @@ message.channel.fetchMessages({
  }
  message.channel.bulkDelete(messages).catch(error => console.log(error.stack));
 });
+=======
+            messages = messages.filter(m => m.author.id === filterBy).array().slice(0, parseInt(args[1]) + 1);
+            }
+        
+        message.channel.bulkDelete(messages).catch(error => console.log(error.stack));
+        message.reply(args[1] + " messages removed!").then(d_msg => {d_msg.delete(5000); });
+        });
+>>>>>>> parent of 35ec860... Update Math
 
         break;
         //MUSIC PLAY

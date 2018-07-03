@@ -55,14 +55,14 @@ client.on("message", async message => {
     switch (args[0]) {
         //PING TEST
         case "ping":
-            message.channel.send("PONG!" + new Date().getTime() - message.createdTimestamp + " ms");
+            message.channel.send("PONG!");
             break;
         //INFO
         case "info":
             message.channel.send("This is INORI BOT V0.2 on Node.Js")
             break;
         //NOTICE ME SENPAI
-        case "nm":
+        case "noticeme":
             var r_hibye = Math.floor(Math.random() * 2)
 
             switch(r_hibye) {
@@ -70,16 +70,55 @@ client.on("message", async message => {
                     const hiembed = new Discord.RichEmbed()
                         .setColor(0xff7ff0)
                         .setTitle("Hi " + author_tag)
+                        .setImage("http://gph.is/YBriu4")
                     message.channel.send(hiembed);
                 break;
                 case 1:
                     const byeembed = new Discord.RichEmbed()
                         .setColor(0x000)
                         .setTitle("Go away!")
+                        .setImage("https://media1.tenor.com/images/07496aed1b01a8af6ec13a21dc39648d/tenor.gif?itemid=5288504")
                     message.channel.send(byeembed);
                 break;
             }
             break;
+        //FLIP TABLE
+        case "flip":
+        var r_hibye = Math.floor(Math.random() * 9)
+
+        switch(r_hibye) {
+            case 0:
+                message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {files: ["https://www.memecenter.com/fun/352052/table-flip-9000-acchi-kocchi"]});
+            break;
+            case 1:
+                message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {files: ["https://i.gifer.com/IZ9.gif"]});
+            break;
+            case 2:
+                message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {files: ["https://tenor.com/view/cat-angry-tableflip-gif-3465051"]});
+            break;
+            case 3:
+                message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {files: ["https://tenor.com/view/table-flip-tableflip-flip-table-anime-flip-gif-5738472"]});
+            break;
+            case 4:
+                message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {files: ["https://tenor.com/view/tableflip-anime-gif-3639689"]});
+            break;
+            case 5:
+            message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {files: ["https://imgur.com/r/TablesWillBeFlipped/4lCNxmh"]});
+            break;
+            case 6:
+            message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {files: ["https://gfycat.com/gifs/detail/PracticalCandidDassierat"]});
+            break;
+            case 7:
+            message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {files: ["https://imgur.com/gallery/GsyZydl"]});
+            break;
+            case 8:
+            message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {files: ["https://imgur.com/r/TablesWillBeFlipped/AWLwqZ6"]});
+            break;
+            case 9:
+            message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {files: ["https://imgur.com/r/TablesWillBeFlipped/HO73rPU"]});
+            break;
+        }
+        break;
         //MUSIC PLAY
         case "play":
 
@@ -269,7 +308,7 @@ return message.channel.send(`I set the volume to: **${args[1]}**`);
         if (!song) {
             console.log("Bot disconecting in 1 minute");
 
-            setTimeout( function() {serverQueue.voiceChannel.leave}, 60000);
+            setTimeout( function() {client.user.voiceChannel.leave()}, 60000);
 
             queue.delete(guild.id);
          

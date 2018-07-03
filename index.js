@@ -155,10 +155,8 @@ client.on("message", async message => {
 					var videos = await youtube.searchVideos(searchString, 10);
 					let index = 0;
 					message.channel.send(`
-                    __**Song selection:**__
+                    __**Select 1 out of 10!**__
                     ${videos.map(video2 => `**${++index} -** ${video2.title}`).join('\n')}
-                    \n
-                    From 1 out of 10! Which would you like?! 
 					`);
 					// eslint-disable-next-line max-depth
 					try {
@@ -169,7 +167,7 @@ client.on("message", async message => {
 						});
 					} catch (err) {
 						console.error(err);
-						return message.channel.send("You didn't answer me, cancelling video selection for now.");
+						return message.channel.send("You didn't answer me, so I'm gonna cancel song selection for now.");
 					}
 					const videoIndex = parseInt(response.first().content);
 					var video = await youtube.getVideoByID(videos[videoIndex - 1].id);

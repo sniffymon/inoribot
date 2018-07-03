@@ -84,9 +84,9 @@ client.on("message", async message => {
             break;
         //FLIP TABLE
         case "flip":
-        var r_hibye = 0 //Math.floor(Math.random() * 9)
+        var r_flip = Math.floor(Math.random() * 9)
 
-        switch(r_hibye) {
+        switch(r_flip) {
             case 0:
             message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!", {
                 file: "https://img.memecdn.com/table-flip-9000-acchi-kocchi_o_352052.gif" // Or replace with FileOptions object

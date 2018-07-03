@@ -146,16 +146,18 @@ client.on("message", async message => {
             }).then((messages) => {
             if (user) {
             const filterBy = user ? user.id : Client.user.id;
-            messages = messages.filter(m => m.author.id === filterBy).array().slice(0, args[1] + 1);
+            messages = messages.filter(m => m.author.id === filterBy).array().slice(0, parseInt(args[1]) + 1);
             }
         message.channel.bulkDelete(messages).catch(error => console.log(error.stack));
         const purgeembed = new Discord.RichEmbed()
                         .setColor(0xff7ff0)
                         .setTitle("Purged")
                         .setAuthor("Inori")
-                        .setDescription( args[1] + 1 + "messages removed.")
-                    message.channel.send(purgeembed);
-        setTimeout(function() { message.delete()}, 5000);
+                        .setDescription( parseInt(args[1] + 1) + "messages removed.")
+                    message.channel.reply(purgeembed)
+                        .then(message => {
+                            message.delete(5000)
+                        })
         });
 
         break;

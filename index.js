@@ -14,8 +14,11 @@ const youtube = new YouTube(GOOGLE_API_KEY);
 
 client.on("ready", function(){
     var activitymsg = ["with candy!", "the piano!", "the guitar!", "with Shiro!", "the drums!", "with all cute things!", "around!", "Black Desert Online!", "with her toys!"];
-    
-
+    //Call First Time
+    var randomizeno = (Math.floor(Math.random() * activitymsg.length))
+        client.user.setActivity(activitymsg[randomizeno], {
+        type: "PLAYING"});
+            //Second Time Loop Delay
     setInterval( function() {
         var randomizeno = (Math.floor(Math.random() * activitymsg.length))
         client.user.setActivity(activitymsg[randomizeno], {
@@ -154,11 +157,8 @@ client.on("message", async message => {
                         .setTitle("Purged")
                         .setAuthor("Inori")
                         .setDescription( parseInt(args[1] + 1) + "messages removed.")
-                    message.reply(purgeembed)
-                        .then(message => {
-                            message.delete(5000)
-                        })
-                        .catch()
+                    message.channel.send(purgeembed)
+                    message.delete(5000);
         });
 
         break;

@@ -14,7 +14,7 @@ const youtube = new YouTube(GOOGLE_API_KEY);
 
 client.on("ready", function(){
     var activitymsg = ["with candy!", "the piano!", "the guitar!", "with Shiro!", "the drums!", "with all cute things!"];
-    var randomizeno = [Math.floor(Math.round() * activitymsg.length)]
+    var randomizeno = (Math.floor(Math.round() * activitymsg.length))
    
         client.user.setActivity(activitymsg[randomizeno], {
         type: "PLAYING"

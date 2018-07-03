@@ -13,7 +13,7 @@ var client = new Discord.Client({disableEveryone: true});
 const youtube = new YouTube(GOOGLE_API_KEY);
 
 client.on("ready", function(){
-    var activitymsg = ["with candy!", "the piano!", "the guitar!", "with Shiro!", "the drums!", "with all cute things!"];
+    var activitymsg = ["with candy!", "the piano!", "the guitar!", "with Shiro!", "the drums!", "with all cute things!", "around!", "Black Desert Online!", "with her toys!"];
     
 
     setInterval( function() {
@@ -153,7 +153,7 @@ client.on("message", async message => {
                         .setColor(0xff7ff0)
                         .setTitle("Purged")
                         .setAuthor("Inori")
-                        .setDescripttion( args[1] + 1 + "messages removed.")
+                        .setDescription( args[1] + 1 + "messages removed.")
                     message.channel.send(purgeembed);
         setTimeout(function() { message.delete()}, 5000);
         });

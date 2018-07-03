@@ -320,7 +320,7 @@ return message.channel.send(`I set the volume to: **${args[1]}**`);
         if (!song) {
             console.log("Bot disconecting in 1 minute");
 
-            setTimeout( function() {client.user.voiceChannel.leave()}, 60000);
+            setTimeout( function() {voiceChannel.leave()}, 60000);
 
             queue.delete(guild.id);
          

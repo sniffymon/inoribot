@@ -21,7 +21,7 @@ client.on("ready", function(){
         client.user.setActivity(activitymsg[randomizeno], {
         type: "PLAYING"
       })
-    console.log(randomizeno)}, 60000)
+    console.log(randomizeno)}, 300000)
 
     console.log("Inori is now Ready!");
     
@@ -106,13 +106,13 @@ client.on("message", async message => {
                 message.channel.send("😡 HNNNHHNHNNHNHNHHH!!! " + author_tag + " baka!", {files: ["https://i.gifer.com/IZ9.gif"]});
             break;
             case 2:
-                message.channel.send("😡 HNNNHHNHNNHNHNHHH!!! " + author_tag + " baka!", {files: ["https://media1.tenor.com/images/fa3394ab6ebe3cb5db98518fc88820c3/tenor.gif?itemid=3465051"]});
+                message.channel.send("😡 HNNNHHNHNNHNHNHHH!!! " + author_tag + " baka!", {files: ["https://media1.tenor.com/images/fa3394ab6ebe3cb5db98518fc88820c3/tenor.gif"]});
             break;
             case 3:
-                message.channel.send("😡 HNNNHHNHNNHNHNHHH!!! " + author_tag + " baka!", {files: ["https://media1.tenor.com/images/8f117c505e63fc130bb0a605510e48f6/tenor.gif?itemid=5738472"]});
+                message.channel.send("😡 HNNNHHNHNNHNHNHHH!!! " + author_tag + " baka!", {files: ["https://media1.tenor.com/images/8f117c505e63fc130bb0a605510e48f6/tenor.gif"]});
             break;
             case 4:
-                message.channel.send("😡 HNNNHHNHNNHNHNHHH!!! " + author_tag + " baka!", {files: ["https://media1.tenor.com/images/1de142e71b4f399d67ab947cad8a7ed3/tenor.gif?itemid=3639689"]});
+                message.channel.send("😡 HNNNHHNHNNHNHNHHH!!! " + author_tag + " baka!", {files: ["https://media1.tenor.com/images/1de142e71b4f399d67ab947cad8a7ed3/tenor.gif"]});
             break;
             case 5:
             message.channel.send("😡 HNNNHHNHNNHNHNHHH!!! " + author_tag + " baka!", {files: ["https://i.imgur.com/4lCNxmh.gif"]});

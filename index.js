@@ -84,12 +84,14 @@ client.on("message", async message => {
             break;
         //FLIP TABLE
         case "flip":
-        var r_hibye = Math.floor(Math.random() * 9)
+        var r_hibye = 0 //Math.floor(Math.random() * 9)
 
         switch(r_hibye) {
             case 0:
-                message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {file: ["https://www.memecenter.com/fun/352052/table-flip-9000-acchi-kocchi"]});
-            break;
+            message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!", {
+                file: "https://www.memecenter.com/fun/352052/table-flip-9000-acchi-kocchi" // Or replace with FileOptions object
+            });
+            break;               
             case 1:
                 message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {file: ["https://i.gifer.com/IZ9.gif"]});
             break;

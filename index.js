@@ -47,7 +47,7 @@ client.on("message", async message => {
     if (message.author.bot) return;
     if (!message.content.startsWith(PREFIX)) return;  
     //Admin Identity Role
-    var adminrolename = "Admin"
+    var adminrolename = "Administrator"
     //Prefix Translation Engine
     var args = message.content.substring(PREFIX.length).split(" ");
     var author_tag = message.author.username

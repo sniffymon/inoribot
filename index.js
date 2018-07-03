@@ -264,10 +264,12 @@ return message.channel.send(`I set the volume to: **${args[1]}**`);
     
     function play(guild, song) {
         const serverQueue = queue.get(guild.id);
+        clearTimeout(inactivetimer);
+        console.log("A timeout timer has been reset!")
     
         if (!song) {
             queue.delete(guild.id);
-            inactivetimer = setTimeout(serverQueue.voiceChannel.leave, 60000);
+            inactivetimer = setTimeout(function(){ serverQueue.voiceChannel.leave } , 60000);
             return;
         }
         console.log(serverQueue.songs);
@@ -281,8 +283,6 @@ return message.channel.send(`I set the volume to: **${args[1]}**`);
             })
             .on('error', error => console.error(error));
         dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
-    		clearTimeout(inactivetimer);
-            console.log("A timeout timer has been reset!")
         serverQueue.textChannel.send(`🎶 I'll start singing: **${song.title}**`);
     }
 });

@@ -14,9 +14,9 @@ var randomizeam = activitymsg[Math.floor(Math.round() * activitymsg.length)]
 const youtube = new YouTube(GOOGLE_API_KEY);
 
 client.on("ready", function(){
-    setInterval(client.user.setActivity(randomizeam, {
+    setInterval(function(){ client.user.setActivity(randomizeam, {
         type: "PLAYING"
-      }), 60000);
+      })}, 60000);
     console.log("Inori is now Ready!");
 })
 

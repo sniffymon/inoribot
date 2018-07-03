@@ -192,6 +192,11 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
 		serverQueue.volume = args[1];
 		serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 5);
 return message.channel.send(`I set the volume to: **${args[1]}**`);
+        //BOT RESTART
+        case "restart":
+            restartBot(message.channel)
+            
+        break;
         //MULTI COMM TEST
         case "mult":
             switch (args[1]) {
@@ -261,8 +266,8 @@ return message.channel.send(`I set the volume to: **${args[1]}**`);
         const serverQueue = queue.get(guild.id);
     
         if (!song) {
-            serverQueue.voiceChannel.leave();
             queue.delete(guild.id);
+            inactivetimer = setTimeout(serverQueue.voiceChannel.leave, 60000);
             return;
         }
         console.log(serverQueue.songs);
@@ -272,7 +277,7 @@ return message.channel.send(`I set the volume to: **${args[1]}**`);
                 if (reason === 'Stream is not generating quickly enough.') console.log('Song ended. Bot disconnecting in 1 min');
                 else console.log(reason);
                 serverQueue.songs.shift();
-                inactivetimer = setTimeout(play, 60000, guild, serverQueue.songs[0]);
+                play(guild, serverQueue.songs[0]);
             })
             .on('error', error => console.error(error));
         dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
@@ -281,5 +286,12 @@ return message.channel.send(`I set the volume to: **${args[1]}**`);
         serverQueue.textChannel.send(`🎶 I'll start singing: **${song.title}**`);
     }
 });
+
+
+function restartBot(channel) {
+    channel.send('Bot Restarting')
+    .then(msg => client.destroy())
+    .then(() => client.login(process.env.TOKEN));
+}
 
 client.login(process.env.TOKEN);

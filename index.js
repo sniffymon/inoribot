@@ -153,14 +153,7 @@ client.on("message", async message => {
             }
         
         message.channel.bulkDelete(messages).catch(error => console.log(error.stack));
-        
-        const purgeembed = new Discord.RichEmbed()
-                        .setColor(0xff7ff0)
-                        .setTitle("Purged")
-                        .setAuthor("Inori")
-                        .setDescription( parseInt(args[1]) + 1 + "messages removed.")
-                    message.channel.send(purgeembed);
-                    message.delete(5000);
+        message.reply(args[1] + " messages removed!").then(d_msg => {d_msg.delete(5000); });
         });
 
         break;

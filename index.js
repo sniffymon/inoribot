@@ -268,13 +268,13 @@ return message.channel.send(`I set the volume to: **${args[1]}**`);
     
         if (!song) {
             queue.delete(guild.id);
-            inactivetimer = setTimeout(function(){ serverQueue.voiceChannel.leave } , 60000);
+            serverQueue.voiceChannel.leave
             console.log("Bot disconecting in 1 minute");
             return;
         }
         else {
-               clearTimeout(inactivetimer);
-        console.log("A timeout timer has been reset!")
+                clearTimeout(inactivetimer);
+                console.log("A timeout timer has been reset!")
         }
         console.log(serverQueue.songs);
     

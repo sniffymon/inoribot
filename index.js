@@ -143,18 +143,18 @@ client.on("message", async message => {
                 return;
             }
             
-        if (!args[1]) return message.reply('Please insert the number of messages you\'d like to purge. \n Usage: ' + PREFIX + 'purge <amount> (user)');
-        if (!args[1] && !user) return message.reply('Please insert the number of messages you\'d like to purge. \n Usage: ' + PREFIX + 'purge <amount> (user)');
+        if (!amount) return message.reply('Please insert the number of messages you\'d like to purge. \n Usage: ' + PREFIX + 'purge <amount> (user)');
+        if (!amount && !user) return message.reply('Please insert the number of messages you\'d like to purge. \n Usage: ' + PREFIX + 'purge <amount> (user)');
             message.channel.fetchMessages({
-              limit: args[1],
+              limit: amount,
             }).then((messages) => {
             if (user) {
             const filterBy = user ? user.id : Client.user.id;
-            messages = messages.filter(m => m.author.id === filterBy).array().slice(0, parseInt(args[1]) + 2);
+            messages = messages.filter(m => m.author.id === filterBy).array().slice(0, parseInt(amount));
             }
         
         message.channel.bulkDelete(messages).catch(error => console.log(error.stack));
-        message.reply("I removed " + args[1] + " messages!").then(d_msg => {d_msg.delete(5000); });
+        message.reply("I removed " + amount + " messages!").then(d_msg => {d_msg.delete(5000); });
         });
 
         break;

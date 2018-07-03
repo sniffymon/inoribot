@@ -19,6 +19,7 @@ client.on("ready", function(){
         type: "PLAYING"
       })
     console.log("Inori is now Ready!");
+    console.log(randomizeam)
 })
 
 //WELCOME MESSAGE

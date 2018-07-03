@@ -154,7 +154,7 @@ client.on("message", async message => {
                         .setTitle("Purged")
                         .setAuthor("Inori")
                         .setDescription( parseInt(args[1] + 1) + "messages removed.")
-                    message.channel.reply(purgeembed)
+                    message.reply(purgeembed)
                         .then(message => {
                             message.delete(5000)
                         })

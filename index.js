@@ -264,19 +264,23 @@ return message.channel.send(`I set the volume to: **${args[1]}**`);
     
     function play(guild, song) {
         const serverQueue = queue.get(guild.id);
-        clearTimeout(inactivetimer);
-        console.log("A timeout timer has been reset!")
+     
     
         if (!song) {
             queue.delete(guild.id);
             inactivetimer = setTimeout(function(){ serverQueue.voiceChannel.leave } , 60000);
+            console.log("Bot disconecting in 1 minute");
             return;
+        }
+        else {
+               clearTimeout(inactivetimer);
+        console.log("A timeout timer has been reset!")
         }
         console.log(serverQueue.songs);
     
         const dispatcher = serverQueue.connection.playStream(ytdl(song.url))
             .on('end', reason => {
-                if (reason === 'Stream is not generating quickly enough.') console.log('Song ended. Bot disconnecting in 1 min');
+                if (reason === 'Stream is not generating quickly enough.') console.log('Song ended.');
                 else console.log(reason);
                 serverQueue.songs.shift();
                 play(guild, serverQueue.songs[0]);

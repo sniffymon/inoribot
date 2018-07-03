@@ -69,8 +69,8 @@ client.on("message", async message => {
                 case 0:
                     const hiembed = new Discord.RichEmbed()
                         .setColor(0xff7ff0)
-                        .setTitle("Hi " + author_tag)
-                        .setImage("http://gph.is/YBriu4")
+                        .setTitle("Hi " + author_tag + "! Hehe.")
+                        .setImage("https://tenor.com/Mbkm.gif")
                     message.channel.send(hiembed);
                 break;
                 case 1:
@@ -88,34 +88,34 @@ client.on("message", async message => {
 
         switch(r_hibye) {
             case 0:
-                message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {files: ["https://www.memecenter.com/fun/352052/table-flip-9000-acchi-kocchi"]});
+                message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {file: ["https://www.memecenter.com/fun/352052/table-flip-9000-acchi-kocchi"]});
             break;
             case 1:
-                message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {files: ["https://i.gifer.com/IZ9.gif"]});
+                message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {file: ["https://i.gifer.com/IZ9.gif"]});
             break;
             case 2:
-                message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {files: ["https://tenor.com/view/cat-angry-tableflip-gif-3465051"]});
+                message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {file: ["https://tenor.com/view/cat-angry-tableflip-gif-3465051"]});
             break;
             case 3:
-                message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {files: ["https://tenor.com/view/table-flip-tableflip-flip-table-anime-flip-gif-5738472"]});
+                message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {file: ["https://tenor.com/view/table-flip-tableflip-flip-table-anime-flip-gif-5738472"]});
             break;
             case 4:
-                message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {files: ["https://tenor.com/view/tableflip-anime-gif-3639689"]});
+                message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {file: ["https://tenor.com/view/tableflip-anime-gif-3639689"]});
             break;
             case 5:
-            message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {files: ["https://imgur.com/r/TablesWillBeFlipped/4lCNxmh"]});
+            message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {file: ["https://imgur.com/r/TablesWillBeFlipped/4lCNxmh"]});
             break;
             case 6:
-            message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {files: ["https://gfycat.com/gifs/detail/PracticalCandidDassierat"]});
+            message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {file: ["https://gfycat.com/gifs/detail/PracticalCandidDassierat"]});
             break;
             case 7:
-            message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {files: ["https://imgur.com/gallery/GsyZydl"]});
+            message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {file: ["https://imgur.com/gallery/GsyZydl"]});
             break;
             case 8:
-            message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {files: ["https://imgur.com/r/TablesWillBeFlipped/AWLwqZ6"]});
+            message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {file: ["https://imgur.com/r/TablesWillBeFlipped/AWLwqZ6"]});
             break;
             case 9:
-            message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {files: ["https://imgur.com/r/TablesWillBeFlipped/HO73rPU"]});
+            message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {file: ["https://imgur.com/r/TablesWillBeFlipped/HO73rPU"]});
             break;
         }
         break;

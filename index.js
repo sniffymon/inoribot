@@ -131,6 +131,28 @@ client.on("message", async message => {
             break;
         }
         break;
+        //PURGE
+        case "purge":
+            var user = message.mentions.users.first();
+
+            message.delete();
+            if (!message.member.roles.find("name", adminrolename)) {
+                message.channel.send('You do not have the permissions for that command!');
+                return;
+            }
+        if (!amount) return message.reply('Please insert the number of messages you\'d like to purge. \n Usage: ' + PREFIX + 'purge <amount> (user)');
+        if (!amount && !user) return message.reply('Please insert the number of messages you\'d like to purge. \n Usage: ' + PREFIX + 'purge <amount> (user)');
+            message.channel.fetchMessages({
+              limit: amount,
+            }).then((messages) => {
+            if (user) {
+            const filterBy = user ? user.id : Client.user.id;
+            messages = messages.filter(m => m.author.id === filterBy).array().slice(0, amount);
+            }
+        message.channel.bulkDelete(messages).catch(error => console.log(error.stack));
+        });
+
+        break;
         //MUSIC PLAY
         case "play":
 
@@ -235,18 +257,17 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
             break;
         //MUSIC VOLUME
         case "volume":
-        if (message.member.roles.exists("name", adminrolename)) {
-        
+        if (!message.member.roles.find("name", adminrolename)) {
+            message.channel.send('You do not have the permissions for that command!');
+            return;
+        }   
         if (!message.member.voiceChannel) return message.channel.send('You are not in a voice channel!');
 		if (!serverQueue) return message.channel.send('There is nothing playing.');
 		if (!args[1]) return message.channel.send(`The current volume is: **${serverQueue.volume}**`);
 		serverQueue.volume = args[1];
 		serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 5);
-return message.channel.send(`I set the volume to: **${args[1]}**`);
-        }
-        else {
-            message.channel.send("You do not have the permissions for that command!");
-        }
+        return message.channel.send(`I set the volume to: **${args[1]}**`);
+        
         break;
         //BOT RESTART
         case "restart":

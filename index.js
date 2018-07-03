@@ -158,6 +158,7 @@ client.on("message", async message => {
                         .then(message => {
                             message.delete(5000)
                         })
+                        .catch()
         });
 
         break;

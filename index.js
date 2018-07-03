@@ -138,7 +138,7 @@ client.on("message", async message => {
                 message.channel.send('You do not have the permissions for that command!');
                 return;
             }
-            message.delete();
+            
         if (!amount) return message.reply('Please insert the number of messages you\'d like to purge. \n Usage: ' + PREFIX + 'purge <amount> (user)');
         if (!amount && !user) return message.reply('Please insert the number of messages you\'d like to purge. \n Usage: ' + PREFIX + 'purge <amount> (user)');
             message.channel.fetchMessages({
@@ -149,6 +149,7 @@ client.on("message", async message => {
             messages = messages.filter(m => m.author.id === filterBy).array().slice(0, amount);
             }
         message.channel.bulkDelete(messages).catch(error => console.log(error.stack));
+        message.delete();
         });
 
         break;

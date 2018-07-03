@@ -139,14 +139,14 @@ client.on("message", async message => {
                 return;
             }
             
-        if (!amount) return message.reply('Please insert the number of messages you\'d like to purge. \n Usage: ' + PREFIX + 'purge <amount> (user)');
-        if (!amount && !user) return message.reply('Please insert the number of messages you\'d like to purge. \n Usage: ' + PREFIX + 'purge <amount> (user)');
+        if (!args[1]) return message.reply('Please insert the number of messages you\'d like to purge. \n Usage: ' + PREFIX + 'purge <amount> (user)');
+        if (!args[1] && !user) return message.reply('Please insert the number of messages you\'d like to purge. \n Usage: ' + PREFIX + 'purge <amount> (user)');
             message.channel.fetchMessages({
-              limit: amount,
+              limit: args[1],
             }).then((messages) => {
             if (user) {
             const filterBy = user ? user.id : Client.user.id;
-            messages = messages.filter(m => m.author.id === filterBy).array().slice(0, amount);
+            messages = messages.filter(m => m.author.id === filterBy).array().slice(0, args[1]);
             }
         message.channel.bulkDelete(messages).catch(error => console.log(error.stack));
         message.delete();

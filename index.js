@@ -43,7 +43,8 @@ client.on("message", async message => {
     //Input Validation
     if (message.author.bot) return;
     if (!message.content.startsWith(PREFIX)) return;  
-
+    //Admin Identity Role
+    var adminrolename = "Admin"
     //Prefix Translation Engine
     var args = message.content.substring(PREFIX.length).split(" ");
     var author_tag = message.author.username
@@ -227,16 +228,22 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
             break;
         //MUSIC VOLUME
         case "volume":
+        if (message.member.roles.exists("name", adminrolename)) {
+        
         if (!message.member.voiceChannel) return message.channel.send('You are not in a voice channel!');
 		if (!serverQueue) return message.channel.send('There is nothing playing.');
 		if (!args[1]) return message.channel.send(`The current volume is: **${serverQueue.volume}**`);
 		serverQueue.volume = args[1];
 		serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 5);
 return message.channel.send(`I set the volume to: **${args[1]}**`);
+        }
+        else {
+            message.channel.send("You do not have the permissions for that command!");
+        }
+        break;
         //BOT RESTART
         case "restart":
-            restartBot(message.channel)
-            
+            restartBot(message.channel);
         break;
         //MULTI COMM TEST
         case "mult":
@@ -278,7 +285,7 @@ return message.channel.send(`I set the volume to: **${args[1]}**`);
                 voiceChannel: voiceChannel,
                 connection: null,
                 songs: [],
-                volume: 5,
+                volume: 2,
                 playing: true
             };
             queue.set(message.guild.id, queueConstruct);

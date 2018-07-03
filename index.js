@@ -134,12 +134,11 @@ client.on("message", async message => {
         //PURGE
         case "purge":
             var user = message.mentions.users.first();
-
-            message.delete();
             if (!message.member.roles.find("name", adminrolename)) {
                 message.channel.send('You do not have the permissions for that command!');
                 return;
             }
+            message.delete();
         if (!amount) return message.reply('Please insert the number of messages you\'d like to purge. \n Usage: ' + PREFIX + 'purge <amount> (user)');
         if (!amount && !user) return message.reply('Please insert the number of messages you\'d like to purge. \n Usage: ' + PREFIX + 'purge <amount> (user)');
             message.channel.fetchMessages({

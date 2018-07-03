@@ -268,8 +268,8 @@ return message.channel.send(`I set the volume to: **${args[1]}**`);
     
         if (!song) {
             queue.delete(guild.id);
-            setTimeout(serverQueue.voiceChannel.leave , 60000);
-            console.log("Bot disconecting in 1 minute");
+            setTimeout( function() {serverQueue.voiceChannel.leave
+            console.log("Bot disconecting in 1 minute");}, 60000)
             return;
         }
         else {

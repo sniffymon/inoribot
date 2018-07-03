@@ -70,7 +70,7 @@ client.on("message", async message => {
                     const hiembed = new Discord.RichEmbed()
                         .setColor(0xff7ff0)
                         .setTitle("Hi " + author_tag + "! Hehe.")
-                        .setImage("https://tenor.com/Mbkm.gif")
+                        .setImage("https://media1.tenor.com/images/943a3f95936d66dc0c78fd445893431e/tenor.gif?itemid=9060940")
                     message.channel.send(hiembed);
                 break;
                 case 1:
@@ -89,7 +89,7 @@ client.on("message", async message => {
         switch(r_hibye) {
             case 0:
             message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!", {
-                file: "https://www.memecenter.com/fun/352052/table-flip-9000-acchi-kocchi.gif" // Or replace with FileOptions object
+                file: "https://img.memecdn.com/table-flip-9000-acchi-kocchi_o_352052.gif" // Or replace with FileOptions object
             });
             break;               
             case 1:

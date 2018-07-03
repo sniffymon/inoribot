@@ -14,9 +14,10 @@ var randomizeam = activitymsg[Math.floor(Math.round() * activitymsg.length)]
 const youtube = new YouTube(GOOGLE_API_KEY);
 
 client.on("ready", function(){
-    setInterval(function(){ client.user.setActivity(randomizeam, {
+   
+        client.user.setActivity(randomizeam, {
         type: "PLAYING"
-      })}, 60000);
+      })
     console.log("Inori is now Ready!");
 })
 
@@ -96,31 +97,31 @@ client.on("message", async message => {
             });
             break;               
             case 1:
-                message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {files: ["https://i.gifer.com/IZ9.gif"]});
+                message.channel.send("😡 HNNNHHNHNNHNHNHHH!!! " + author_tag + " baka!", {files: ["https://i.gifer.com/IZ9.gif"]});
             break;
             case 2:
-                message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {files: ["https://media1.tenor.com/images/fa3394ab6ebe3cb5db98518fc88820c3/tenor.gif?itemid=3465051"]});
+                message.channel.send("😡 HNNNHHNHNNHNHNHHH!!! " + author_tag + " baka!", {files: ["https://media1.tenor.com/images/fa3394ab6ebe3cb5db98518fc88820c3/tenor.gif?itemid=3465051"]});
             break;
             case 3:
-                message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {files: ["https://media1.tenor.com/images/8f117c505e63fc130bb0a605510e48f6/tenor.gif?itemid=5738472"]});
+                message.channel.send("😡 HNNNHHNHNNHNHNHHH!!! " + author_tag + " baka!", {files: ["https://media1.tenor.com/images/8f117c505e63fc130bb0a605510e48f6/tenor.gif?itemid=5738472"]});
             break;
             case 4:
-                message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {files: ["https://media1.tenor.com/images/1de142e71b4f399d67ab947cad8a7ed3/tenor.gif?itemid=3639689"]});
+                message.channel.send("😡 HNNNHHNHNNHNHNHHH!!! " + author_tag + " baka!", {files: ["https://media1.tenor.com/images/1de142e71b4f399d67ab947cad8a7ed3/tenor.gif?itemid=3639689"]});
             break;
             case 5:
-            message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {files: ["https://i.imgur.com/4lCNxmh.gif"]});
+            message.channel.send("😡 HNNNHHNHNNHNHNHHH!!! " + author_tag + " baka!", {files: ["https://i.imgur.com/4lCNxmh.gif"]});
             break;
             case 6:
-            message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {files: ["https://zippy.gfycat.com/PracticalCandidDassierat.gif"]});
+            message.channel.send("😡 HNNNHHNHNNHNHNHHH!!! " + author_tag + " baka!", {files: ["https://zippy.gfycat.com/PracticalCandidDassierat.gif"]});
             break;
             case 7:
-            message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {files: ["https://i.imgur.com/GsyZydl.gif"]});
+            message.channel.send("😡 HNNNHHNHNNHNHNHHH!!! " + author_tag + " baka!", {files: ["https://i.imgur.com/GsyZydl.gif"]});
             break;
             case 8:
-            message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {files: ["https://i.imgur.com/AWLwqZ6.gif"]});
+            message.channel.send("😡 HNNNHHNHNNHNHNHHH!!! " + author_tag + " baka!", {files: ["https://i.imgur.com/AWLwqZ6.gif"]});
             break;
             case 9:
-            message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {files: ["https://i.imgur.com/HO73rPU.gif"]});
+            message.channel.send("😡 HNNNHHNHNNHNHNHHH!!! " + author_tag + " baka!", {files: ["https://i.imgur.com/HO73rPU.gif"]});
             break;
         }
         break;

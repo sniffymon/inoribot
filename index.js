@@ -89,35 +89,35 @@ client.on("message", async message => {
         switch(r_hibye) {
             case 0:
             message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!", {
-                file: "https://www.memecenter.com/fun/352052/table-flip-9000-acchi-kocchi" // Or replace with FileOptions object
+                file: "https://www.memecenter.com/fun/352052/table-flip-9000-acchi-kocchi.gif" // Or replace with FileOptions object
             });
             break;               
             case 1:
-                message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {file: ["https://i.gifer.com/IZ9.gif"]});
+                message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {files: ["https://i.gifer.com/IZ9.gif"]});
             break;
             case 2:
-                message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {file: ["https://tenor.com/view/cat-angry-tableflip-gif-3465051"]});
+                message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {files: ["https://tenor.com/view/cat-angry-tableflip-gif-3465051.gif"]});
             break;
             case 3:
-                message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {file: ["https://tenor.com/view/table-flip-tableflip-flip-table-anime-flip-gif-5738472"]});
+                message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {files: ["https://tenor.com/view/table-flip-tableflip-flip-table-anime-flip-gif-5738472.gif"]});
             break;
             case 4:
-                message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {file: ["https://tenor.com/view/tableflip-anime-gif-3639689"]});
+                message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {files: ["https://tenor.com/view/tableflip-anime-gif-3639689.gif"]});
             break;
             case 5:
-            message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {file: ["https://imgur.com/r/TablesWillBeFlipped/4lCNxmh"]});
+            message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {files: ["https://imgur.com/r/TablesWillBeFlipped/4lCNxmh.gif"]});
             break;
             case 6:
-            message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {file: ["https://gfycat.com/gifs/detail/PracticalCandidDassierat"]});
+            message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {files: ["https://gfycat.com/gifs/detail/PracticalCandidDassierat.gif"]});
             break;
             case 7:
-            message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {file: ["https://imgur.com/gallery/GsyZydl"]});
+            message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {files: ["https://imgur.com/gallery/GsyZydl.gif"]});
             break;
             case 8:
-            message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {file: ["https://imgur.com/r/TablesWillBeFlipped/AWLwqZ6"]});
+            message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {files: ["https://imgur.com/r/TablesWillBeFlipped/AWLwqZ6.gif"]});
             break;
             case 9:
-            message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {file: ["https://imgur.com/r/TablesWillBeFlipped/HO73rPU"]});
+            message.channel.send("😡 HNNNHHNHNNHNHNHHH!!!" + author_tag + " baka!", {files: ["https://imgur.com/r/TablesWillBeFlipped/HO73rPU.gif"]});
             break;
         }
         break;

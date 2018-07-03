@@ -276,7 +276,8 @@ return message.channel.send(`I set the volume to: **${args[1]}**`);
             })
             .on('error', error => console.error(error));
         dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
-    		clearTimeout(inactivetimer)
+    		clearTimeout(inactivetimer);
+            console.log("A timeout timer has been reset!")
         serverQueue.textChannel.send(`🎶 I'll start singing: **${song.title}**`);
     }
 });

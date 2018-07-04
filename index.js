@@ -275,6 +275,11 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
         break;
         //BOT RESTART
         case "restart":
+        if (!message.member.roles.find("name", adminrolename)) {
+            message.channel.send('You do not have the permissions for that command!');
+            return;
+        }
+
             restartBot(message.channel);
         break;
         //MULTI COMM TEST
@@ -295,7 +300,7 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
         break;
         //NULL COMMAND
         default:
-            message.channel.send("No such command exists.");
+            message.channel.send("I couldn't find a command like that. Type 'i!help' for my commands.");
 
     }
 

@@ -74,6 +74,19 @@ client.on("message", async message => {
         case "info":
             message.channel.send("This is INORI BOT V0.2 on Node.Js")
             break;
+        //COIN FLIP
+        case "coinflip":
+            var r_coinflip = Math.floor(Math.random() * 2)
+
+            switch(r_coinflip) {
+                case 0:
+                    message.channel.send("You got **heads**!");
+                break;
+                case 1:
+                    message.channel.send("Its **tails**!");
+                break;
+            }
+            break;
         //NOTICE ME SENPAI
         case "noticeme":
             var r_hibye = Math.floor(Math.random() * 2)

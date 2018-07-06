@@ -318,8 +318,6 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
     }
 
     //MUSIC FUNCTIONS
-    var inactivetimer
-
 
     async function handleVideo(video, message, voiceChannel, playlist = false) {
         const serverQueue = queue.get(message.guild.id);
@@ -362,7 +360,7 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
     
     function play(guild, song) {
         const serverQueue = queue.get(guild.id);
-     
+        var inactivetimer
     
         if (!song) {
             console.log("Bot disconecting in 1 minute");
@@ -374,7 +372,7 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
             return;
         }
         else {
-                clearTimeout(inactivetimer);
+                 clearTimeout(inactivetimer);
                 console.log("A timeout timer has been reset!")
         }
         console.log(serverQueue.songs);

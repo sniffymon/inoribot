@@ -365,14 +365,15 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
         if (!song) {
             console.log("Bot disconecting in 1 minute");
             message.channel.send("The song has ended! If there's nothing else, I'll be leaving in a minute!")
-            inactivetimer = setTimeout( function() {message.member.voiceChannel.leave()}, 60000);
+            inactivetimer = setTimeout(function() {message.member.voiceChannel.leave()}, 60000);
 
             queue.delete(guild.id);
          
             return;
         }
         else {
-                 clearTimeout(inactivetimer);
+                clearTimeout(inactivetimer);
+                inactivetimer = null;
                 console.log("A timeout timer has been reset!")
         }
         console.log(serverQueue.songs);

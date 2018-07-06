@@ -367,7 +367,7 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
         if (!song) {
             console.log("Bot disconecting in 1 minute");
             message.channel.send("The song has ended! If there's nothing else, I'll be leaving in a minute!")
-            setTimeout( function() {message.member.voiceChannel.leave()}, 60000);
+            inactivetimer = setTimeout( function() {message.member.voiceChannel.leave()}, 60000);
 
             queue.delete(guild.id);
          

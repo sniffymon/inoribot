@@ -375,6 +375,8 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
                 clearTimeout(inactivetimer);
                 inactivetimer = null;
                 console.log("A timeout timer has been reset!")
+            
+            return;
         }
         console.log(serverQueue.songs);
     

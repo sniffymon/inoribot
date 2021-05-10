@@ -30,6 +30,8 @@ client.on("ready", function(){
 
     //YOUR MOM
     
+
+    //THIS IS SOMETHING ELSE
 })
 
 //WELCOME MESSAGE

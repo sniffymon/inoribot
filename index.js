@@ -28,6 +28,8 @@ client.on("ready", function(){
 
     console.log("Inori is now Ready!");
     
+
+    //THIS IS SOMETHING ELSE
 })
 
 //WELCOME MESSAGE

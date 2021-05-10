@@ -27,6 +27,8 @@ client.on("ready", function(){
     console.log(randomizeno)}, 300000)
 
     console.log("Inori is now Ready!");
+
+    //YOUR MOM
     
 })
 
